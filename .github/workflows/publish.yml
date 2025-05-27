@@ -45,10 +45,6 @@ jobs:
       - name: Version update
         run: npm version patch
 
-      # 태그 푸시
-      - name: Push tags
-        run: git push --tags
-
       # 빌드 실행
       - run: npm run build
 
