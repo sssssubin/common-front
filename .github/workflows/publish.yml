@@ -45,5 +45,4 @@ jobs:
           fi
 
       # 패키지 배포
-      - name: Version update
       - run: npm version patch && npm publish --registry=https://npm.pkg.github.com
