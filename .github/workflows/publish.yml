@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: "18"
 
       # npm 인증 설정
       - name: Setup npm auth
@@ -23,6 +23,13 @@ jobs:
 
       # 의존성 설치
       - run: npm install
+
+      # Git 상태 확인 및 커밋되지 않은 변경 사항 처리
+      - name: Commit changes if any
+        run: |
+          git status
+          git add .
+          git commit -m "버전 업데이트 전에 자동 커밋" 또는 "커밋할 변경 사항이 없습니다"
 
       # 빌드 실행
       - run: npm run build
