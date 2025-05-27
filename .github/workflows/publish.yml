@@ -52,10 +52,9 @@ jobs:
       - run: npm publish --registry=https://npm.pkg.github.com
 
       # 버전 업데이트 후 변경된 package.json 푸시
-      - name: Push version commit
+      - name: Push version commit and tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add package.json package-lock.json
-          git commit -m "자동 버전 업데이트"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git push --tags
