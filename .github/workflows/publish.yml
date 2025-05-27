@@ -54,5 +54,5 @@ jobs:
       # 버전 업데이트 후 변경된 package.json 푸시
       - name: Push version commit and tags
         run: |
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
           git push --tags
