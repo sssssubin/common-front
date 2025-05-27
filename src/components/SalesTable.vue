@@ -58,37 +58,3 @@ const handleCellClick = (row, key, value) => {
   emit("cell-click", { row, key, value });
 };
 </script>
-
-<style lang="scss">
-.table-wrapper {
-  overflow-x: auto;
-  max-height: 600px;
-}
-.sales-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-  th,
-  td {
-    border: 1px solid #ccc;
-    padding: 4px 8px;
-    text-align: center;
-    white-space: nowrap;
-  }
-  thead {
-    background-color: #f0f0f0;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-}
-
-.clickable-cell {
-  cursor: pointer;
-  background-color: #fefefe;
-  transition: background 0.2s ease;
-  &:hover {
-    background-color: #e6f7ff;
-  }
-}
-</style>
