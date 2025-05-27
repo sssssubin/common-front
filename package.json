@@ -6,9 +6,9 @@
   "style": "dist/style.css",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
-      "style": "./dist/style.css"
+      "import": "dist/index.es.js",
+      "require": "dist/index.cjs.js",
+      "style": "dist/style.css"
     }
   },
   "files": [
