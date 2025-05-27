@@ -44,5 +44,9 @@ jobs:
             git commit -m "버전 업데이트 전에 자동 커밋"
           fi
 
+      # 버전 업데이트 (자동 커밋 후)
+      - name: Version update
+        run: npm version patch
+
       # 패키지 배포
-      - run: npm version patch && npm publish --registry=https://npm.pkg.github.com
+      - run: npm publish --registry=https://npm.pkg.github.com
