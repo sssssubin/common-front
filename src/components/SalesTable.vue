@@ -48,18 +48,18 @@ defineProps({
   },
   tableType: {
     type: String,
-    default: '',
+    default: "",
   },
-})
+});
 
-const emit = defineEmits(['cell-click'])
+const emit = defineEmits(["cell-click"]);
 
 const handleCellClick = (row, key, value) => {
-  emit('cell-click', { row, key, value })
-}
+  emit("cell-click", { row, key, value });
+};
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .table-wrapper {
   overflow-x: auto;
   max-height: 600px;
