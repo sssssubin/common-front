@@ -43,7 +43,12 @@ jobs:
       - name: Version bump
         run: |
           npm version patch -m "Upgrade to version %s"
-          git push --follow-tags
+
+      # GitHub Actions 토큰을 사용한 git push
+      - name: Push changes to GitHub
+        run: |
+          git push https://github-actions:${{ secrets.GH_TOKEN }}@github.com/sssssubin/common-front.git HEAD:main
+          git push --tags
 
       # 패키지 배포
       - run: npm publish --registry=https://npm.pkg.github.com
