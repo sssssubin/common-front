@@ -4,6 +4,9 @@ import path from "path";
 
 export default defineConfig({
   plugins: [vue()],
+  optimizeDeps: {
+    include: ["@sssssubin/common-front"],
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.js"),
