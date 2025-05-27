@@ -4,6 +4,14 @@ import path from "path";
 
 export default defineConfig({
   plugins: [vue()],
+  resolve: {
+    alias: {
+      "@common-front": path.resolve(
+        __dirname,
+        "node_modules/@sssssubin/common-front/dist"
+      ),
+    },
+  },
   optimizeDeps: {
     include: ["@sssssubin/common-front"],
   },
