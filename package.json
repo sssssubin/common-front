@@ -13,6 +13,10 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sssssubin/common-front.git"
+  },
   "peerDependencies": {
     "vue": "^3.0.0"
   },
