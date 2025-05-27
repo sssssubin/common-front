@@ -30,9 +30,6 @@ jobs:
           git config --global user.email "bstnqls96@gamil.com"
           git config --global user.name "sssssubin"
 
-      # 빌드 실행
-      - run: npm run build
-
       # 변경 사항 체크 후 커밋
       - name: Auto commit before version update
         run: |
@@ -48,11 +45,8 @@ jobs:
       - name: Version update
         run: npm version patch
 
+      # 빌드 실행
+      - run: npm run build
+
       # 패키지 배포
       - run: npm publish --registry=https://npm.pkg.github.com
-
-      # 버전 업데이트 후 변경된 package.json 푸시
-      - name: Push version commit and tags
-        run: |
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
-          git push --tags
