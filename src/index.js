@@ -1,2 +1,2 @@
-import SalesTable from './components/SalesTable.vue';
+import SalesTable from "./components/SalesTable.vue";
 export { SalesTable };
