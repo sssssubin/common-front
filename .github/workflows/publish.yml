@@ -24,6 +24,12 @@ jobs:
       # 의존성 설치
       - run: npm install
 
+      # Git 사용자 설정
+      - name: Set git user
+        run: |
+          git config --global user.email "bstnqls96@gamil.com"
+          git config --global user.name "sssssubin"
+
       # 변경 사항 체크 후 커밋
       - name: Auto commit before version update
         run: |
@@ -35,7 +41,7 @@ jobs:
             git commit -m "버전 업데이트 전에 자동 커밋"
           fi
 
-      # 버전 업데이트
+      # 버전 업데이트 (자동 커밋 후)
       - name: Version update
         run: npm version patch
 
