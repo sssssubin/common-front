@@ -33,7 +33,13 @@ jobs:
           git config --global user.email "bstnqls96@gamil.com"
           git config --global user.name "sssssubin"
 
-      # 버전 업데이트 및 커밋
+      # 변경 사항을 자동으로 커밋 (없으면 건너뜀)
+      - name: Commit changes if any
+        run: |
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Auto commit before version update"
+
+      # 버전 업데이트
       - name: Version bump
         run: |
           npm version patch -m "Upgrade to version %s"
