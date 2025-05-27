@@ -3,10 +3,12 @@
   "version": "1.0.7",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
+  "style": "./dist/style.css",
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js"
+      "require": "./dist/index.cjs.js",
+      "style": "./dist/style.css"
     }
   },
   "files": [
