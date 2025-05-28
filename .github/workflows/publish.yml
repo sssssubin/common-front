@@ -7,46 +7,51 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # git push 허용
+      packages: write # GitHub Packages publish 허용
+
     steps:
-      # 코드 체크아웃
+      # 1. 코드 체크아웃
       - uses: actions/checkout@v3
 
-      # Node.js 18 설정
-      - name: Setup Node
+      # 2. Node 설정 + GitHub Packages 레지스트리 지정
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18"
+          registry-url: "https://npm.pkg.github.com/"
 
-      # npm 인증 설정
-      - name: Setup npm auth
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+      # 3. 의존성 설치
+      - run: npm ci
 
-      # 의존성 설치
-      - run: npm install
-
-      # Git 사용자 설정
+      # 4. Git 사용자 정보 설정
       - name: Set git user
         run: |
-          git config --global user.email "bstnqls96@gamil.com"
+          git config --global user.email "bstnqls96@gmail.com"
           git config --global user.name "sssssubin"
-
-      # 변경 사항 체크 후 커밋
-      - name: Auto commit before version update
+      # 5. 변경사항 자동 커밋 (변경된 파일이 있을 경우)
+      - name: Auto commit changes
         run: |
-          git status
           git add .
           if git diff --cached --quiet; then
-            echo "커밋할 변경 사항이 없습니다"
+            echo "No changes to commit"
           else
-            git commit -m "버전 업데이트 전에 자동 커밋"
+            git commit -m "ci: auto commit before version update"
+            git push origin main
           fi
+      # 6. 버전 업데이트 및 태그 푸시
+      - name: Bump version and push tag
+        run: |
+          npm version patch -m "ci: release version %s [skip ci]"
+          git push origin main --follow-tags
+      # 7. 빌드
+      - name: Build project
+        run: npm run build
 
-      # 버전 업데이트 (자동 커밋 후)
-      - name: Version update
-        run: npm version patch
-
-      # 빌드 실행
-      - run: npm run build
-
-      # 패키지 배포
-      - run: npm publish --registry=https://npm.pkg.github.com
+      # 8. GitHub Packages로 배포
+      - name: Publish package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
