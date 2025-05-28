@@ -48,7 +48,7 @@ defineProps({
   },
   tableType: {
     type: String,
-    default: null,
+    default: "",
   },
 });
 
