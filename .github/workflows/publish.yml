@@ -32,22 +32,22 @@ jobs:
           git config --global user.email "bstnqls96@gmail.com"
           git config --global user.name "sssssubin"
 
-      # 5. 변경사항 자동 커밋 (변경된 파일이 있을 경우)
+      # 5. 버전 업데이트 및 태그 푸시 (가장 먼저 처리)
+      - name: Bump version and push tag
+        run: |
+          npm version patch -m "ci: release version %s [skip ci]"
+          git push origin main --follow-tags
+
+      # 6. 변경사항 자동 커밋 (빌드 결과 등)
       - name: Auto commit changes
         run: |
           git add .
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "ci: auto commit before version update"
+            git commit -m "ci: auto commit after version update"
             git push origin main
           fi
-
-      # 6. 버전 업데이트 및 태그 푸시
-      - name: Bump version and push tag
-        run: |
-          npm version patch -m "ci: release version %s [skip ci]"
-          git push origin main --follow-tags
 
       # 7. 빌드
       - name: Build project
