@@ -1,4 +1,4 @@
-import { createElementBlock as e, openBlock as t, createElementVNode as d, Fragment as r, renderList as s, toDisplayString as i, createCommentVNode as b } from "vue";
+import { createElementBlock as e, openBlock as t, createElementVNode as u, Fragment as r, renderList as s, toDisplayString as d, createCommentVNode as b } from "vue";
 const k = { class: "table-wrapper" }, _ = ["data-type"], C = ["colspan"], S = ["rowspan", "colspan"], T = ["onClick"], q = {
   __name: "SalesTable",
   props: {
@@ -12,34 +12,34 @@ const k = { class: "table-wrapper" }, _ = ["data-type"], C = ["colspan"], S = ["
     },
     tableType: {
       type: String,
-      default: ""
+      default: null
     }
   },
   emits: ["cell-click"],
   setup(c, { emit: y }) {
-    const h = y, m = (u, p, l) => {
-      h("cell-click", { row: u, key: p, value: l });
+    const h = y, m = (i, p, l) => {
+      h("cell-click", { row: i, key: p, value: l });
     };
-    return (u, p) => (t(), e("div", k, [
-      d("table", {
+    return (i, p) => (t(), e("div", k, [
+      u("table", {
         class: "sales-table",
         "data-type": c.tableType
       }, [
-        d("thead", null, [
+        u("thead", null, [
           (t(!0), e(r, null, s(c.headers, (l, o) => (t(), e("tr", {
             key: "header-" + o
           }, [
             l.label ? (t(), e("th", {
               key: 0,
               colspan: l.colspan
-            }, i(l.label), 9, C)) : (t(!0), e(r, { key: 1 }, s(l.columns, (a, n) => (t(), e("th", {
+            }, d(l.label), 9, C)) : (t(!0), e(r, { key: 1 }, s(l.columns, (a, n) => (t(), e("th", {
               key: "col-" + n,
               rowspan: a.rowspan,
               colspan: a.colspan
-            }, i(a.label), 9, S))), 128))
+            }, d(a.label), 9, S))), 128))
           ]))), 128))
         ]),
-        d("tbody", null, [
+        u("tbody", null, [
           (t(!0), e(r, null, s(c.data, (l, o) => (t(), e("tr", {
             key: "row-" + o
           }, [
@@ -48,7 +48,7 @@ const k = { class: "table-wrapper" }, _ = ["data-type"], C = ["colspan"], S = ["
                 key: n,
                 onClick: (f) => m(l, n, a),
                 class: "clickable-cell"
-              }, i(a), 9, T)) : b("", !0)
+              }, d(a), 9, T)) : b("", !0)
             ], 64))), 256))
           ]))), 128))
         ])
